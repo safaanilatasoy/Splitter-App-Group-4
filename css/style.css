@@ -9,6 +9,7 @@ body {
     min-height: 100vh;
     flex-direction: column;
     font-family: "Space Mono", monospace;
+    min-width: 345px;
 }
 
 .header {
