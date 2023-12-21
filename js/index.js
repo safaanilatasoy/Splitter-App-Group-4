@@ -7,17 +7,17 @@ const numberOfPeopleInputErrorTitle = document.querySelector('#number-of-people-
 const tipAmountElement = document.querySelector('#tip-amount');
 const totalAmountElement = document.querySelector('#total-amount');
 
-numberOfPeopleInput.addEventListener('input', () => {
-    let billValue = parseInt(billInput.value)
-    let percent = parseInt(customInput.value)
-    let numberOfPeople = parseInt(numberOfPeopleInput.value)
+const calculate = () => {
+    const billValue = parseInt(billInput.value)
+    const percent = parseInt(customInput.value)
+    const numberOfPeople = parseInt(numberOfPeopleInput.value)
 
     if(numberOfPeople > 0 && percent > 0 && billValue > 0) {
         const totalTip = (billValue * percent ) / 100
         tipAmountElement.textContent ="$" +(totalTip / numberOfPeople).toFixed(2)
         totalAmountElement.textContent ="$" + ( ( billValue + totalTip ) / numberOfPeople ).toFixed(2)
-    }    
-});
+    } 
+}
 
 const createEventListeners = () => {
     percentageButton.forEach((button) => {
@@ -29,6 +29,7 @@ const createEventListeners = () => {
             btn.classList.remove('active');
         })
         button.classList.add('active');
+        calculate();
 
       })
   })
@@ -95,16 +96,19 @@ const createEventListeners = () => {
     billInput.addEventListener('input', async (event) => {
         event.preventDefault();
         validateInput(billInput);
+        calculate();
     });
     
     customInput.addEventListener('input', async (event) => {
         event.preventDefault();
         validateInput(customInput);
+        calculate();
     });
     
     numberOfPeopleInput.addEventListener('input', async (event) => {
         event.preventDefault();
         validateInput(numberOfPeopleInput, numberOfPeopleInputErrorTitle);
+        calculate();
     });
 
 
